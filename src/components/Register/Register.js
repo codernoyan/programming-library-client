@@ -8,7 +8,11 @@ const Register = () => {
   // user auth
   const { createUser, updateUserProfile, googleSignIn, githubSignIn } = useContext(AuthContext);
 
-  const [name, setName] = useState('');
+  const [userProfile, setUserProfile] = useState({
+    displayName: '',
+    photoURL: ''
+  });
+
   const [userInfo, setUserInfo] = useState({
     userEmail: '',
     userPassword: ''
@@ -18,11 +22,6 @@ const Register = () => {
     emailError: '',
     passwordError: ''
   });
-
-  const handleNameChange = (e) => {
-    const userName = e.target.value;
-    setName(userName);
-  }
 
   const handleEmailChange = (e) => {
     const email = e.target.value;
@@ -41,6 +40,17 @@ const Register = () => {
     setUserInfo({ ...userInfo, userPassword: password });
   }
 
+  const updateProfile = (profile) => {
+    updateUserProfile(profile)
+      .then(() => {
+        console.log('user profile updated');
+      })
+      .catch((err) => {
+      console.error(err)
+    })
+  }
+
+  // create user
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -50,8 +60,8 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        // update display name
-        updateUserProfile(name);
+        // update display name and phto url
+        updateProfile(userProfile);
         toast.success('Register User Successful');
         form.reset();
       })
@@ -94,16 +104,24 @@ const Register = () => {
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl shadow-md">
         <h1 className="text-2xl font-bold text-center">Register</h1>
         <form onSubmit={handleSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
+
           <div className="space-y-1 text-sm">
             <label htmlFor="name" className="block dark:text-gray-400">Name</label>
-            <input onChange={handleNameChange} type="text" name="name" id="name" placeholder="Name" className="w-full px-4 py-3 rounded-md border-2 dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
+            <input onChange={(e) => setUserProfile({ ...userProfile, displayName: e.target.value })} type="text" name="name" id="name" placeholder="Name" className="w-full px-4 py-3 rounded-md border-2 dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
           </div>
+
+          <div className="space-y-1 text-sm">
+            <label htmlFor="photoURL" className="block dark:text-gray-400">Photo URL</label>
+            <input onChange={(e) => setUserProfile({ ...userProfile, photoURL: e.target.value })} type="text" name="photoURL" id="photoURL" placeholder="Photo URL" className="w-full px-4 py-3 rounded-md border-2 dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
+          </div>
+
           <div className="space-y-1 text-sm">
             <label htmlFor="email" className="block dark:text-gray-400">Email</label>
             <input onChange={handleEmailChange} type="email" name="email" id="email" placeholder="Email" className="w-full px-4 py-3 rounded-md border-2 dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
             {/* error message */}
             {error && <p className="text-red-500 font-medium">{error.emailError}</p>}
           </div>
+
           <div className="space-y-1 text-sm">
             <label htmlFor="password" className="block dark:text-gray-400">Password</label>
             <input onChange={handlePasswordChange} type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 border-2 rounded-md dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
@@ -113,6 +131,7 @@ const Register = () => {
               <Link rel="noopener noreferrer" to="/forgotpass">Forgot Password?</Link>
             </div>
           </div>
+
           <button className="block w-full p-3 font-semibold text-center rounded-sm text-white dark:bg-rose-400">Login</button>
         </form>
         <div className="flex items-center pt-4 space-x-1">

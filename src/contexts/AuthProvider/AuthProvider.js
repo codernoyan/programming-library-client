@@ -41,10 +41,8 @@ const AuthProvider = ({children}) => {
     return () => unsubscribe();
   }, []);
 
-  const updateUserProfile = (name) => {
-    return updateProfile(auth.currentUser, {
-      displayName: name
-    })
+  const updateUserProfile = (profile) => {
+    return updateProfile(auth.currentUser, profile)
   }
 
   const authInfo = { user, loading, createUser, loginUser, googleSignIn, logOut, updateUserProfile, githubSignIn };
