@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const [name, setName] = useState('');
   const [userInfo, setUserInfo] = useState({
     userEmail: '',
     userPassword: ''
@@ -14,7 +15,12 @@ const Register = () => {
   const [error, setError] = useState({
     emailError: '',
     passwordError: ''
-  })
+  });
+
+  const handleNameChange = (e) => {
+    const userName = e.target.value;
+    setName(userName);
+  }
 
   const handleEmailChange = (e) => {
     const email = e.target.value;
@@ -56,6 +62,8 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        // update display name
+        updateUserProfile(name);
         toast.success('Register User Successful');
         form.reset();
       })
@@ -69,6 +77,10 @@ const Register = () => {
       <div className="w-full max-w-md p-8 space-y-3 rounded-xl shadow-md">
         <h1 className="text-2xl font-bold text-center">Register</h1>
         <form onSubmit={handleSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
+          <div className="space-y-1 text-sm">
+            <label htmlFor="name" className="block dark:text-gray-400">Name</label>
+            <input onChange={handleNameChange} type="text" name="name" id="name" placeholder="Name" className="w-full px-4 py-3 rounded-md border-2 dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
+          </div>
           <div className="space-y-1 text-sm">
             <label htmlFor="email" className="block dark:text-gray-400">Email</label>
             <input onChange={handleEmailChange} type="email" name="email" id="email" placeholder="Email" className="w-full px-4 py-3 rounded-md border-2 dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
