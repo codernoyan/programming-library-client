@@ -29,71 +29,60 @@ const Header = () => {
             <rect x="14" y="11" width="7" height="12" />
           </svg>
           <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-            Company
+            Programming Library
           </span>
         </Link>
         <ul className="flex items-center hidden space-x-8 lg:flex">
           <li>
             <Link
-              to="/"
+              to="/courses"
               aria-label="Our product"
               title="Our product"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Product
+              Courses
             </Link>
           </li>
           <li>
             <Link
-              to="/"
+              to="/faq"
               aria-label="Our product"
               title="Our product"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Features
+              FAQ
             </Link>
           </li>
           <li>
             <Link
-              to="/"
+              to="/blog"
               aria-label="Product pricing"
               title="Product pricing"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Pricing
+              Blog
             </Link>
-          </li>
-          <li>
-            <Link
-              to="/"
-              aria-label="About us"
-              title="About us"
-              className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-            >
-              About us
-            </Link>
-          </li>
+          </li>          
         </ul>
       </div>
       <ul className="flex items-center hidden space-x-8 lg:flex">
         <li>
-          <Link
-            to="/"
+          <button
             aria-label="Sign in"
             title="Sign in"
             className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
           >
-            Sign in
-          </Link>
+            Light/Dark
+          </button>
         </li>
         <li>
           <Link
-            to="/"
-            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+            to="/login"
+            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-rose-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
             aria-label="Sign up"
             title="Sign up"
           >
-            Sign up
+            Login
           </Link>
         </li>
       </ul>
@@ -146,7 +135,7 @@ const Header = () => {
                       <rect x="14" y="11" width="7" height="12" />
                     </svg>
                     <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                      Company
+                      Programming Library
                     </span>
                   </Link>
                 </div>
@@ -170,62 +159,51 @@ const Header = () => {
                 <ul className="space-y-4">
                   <li>
                     <Link
-                      to="/"
+                      to="/courses"
                       aria-label="Our product"
                       title="Our product"
                       className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                     >
-                      Product
+                      Courses
                     </Link>
                   </li>
                   <li>
                     <Link
-                      to="/"
+                      to="/faq"
                       aria-label="Our product"
                       title="Our product"
                       className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                     >
-                      Features
+                      FAQ
                     </Link>
                   </li>
                   <li>
                     <Link
-                      to="/"
+                      to="/blog"
                       aria-label="Product pricing"
                       title="Product pricing"
                       className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                     >
-                      Pricing
+                      Blog
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      to="/"
-                      aria-label="About us"
-                      title="About us"
-                      className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
-                    >
-                      About us
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      to="/"
+                    <button
                       aria-label="Sign in"
                       title="Sign in"
                       className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                     >
-                      Sign in
-                    </Link>
+                      Light/Dark
+                    </button>
                   </li>
                   <li>
                     <Link
-                      to="/"
-                      className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                      to="/login"
+                      className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-rose-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
                       aria-label="Sign up"
                       title="Sign up"
                     >
-                      Sign up
+                      Login
                     </Link>
                   </li>
                 </ul>
