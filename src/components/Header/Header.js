@@ -101,7 +101,7 @@ const Header = () => {
                   {
                     user?.photoURL ?
                       <button aria-label="Log Out" title={user?.displayName}>
-                        <img src={user?.photoURL} alt="user"></img>
+                        <img className="w-12 h-12 rounded-full" src={user?.photoURL} alt="user"></img>
                       </button>
                       :
                       <button aria-label="Log Out" title={user?.displayName}><FaUserCircle /></button>
@@ -238,14 +238,36 @@ const Header = () => {
                       </button>
                     </li>
                     <li>
-                      <Link
-                        to="/login"
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-rose-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up"
-                        title="Sign up"
-                      >
-                        Login
-                      </Link>
+                      {
+                        user?.email ?
+                          <div className="flex items-center gap-4">
+                            {
+                              user?.photoURL ?
+                                <button title={user?.displayName}>
+                                  <img className="w-12 h-12 rounded-full" src={user?.photoURL} alt="user"></img>
+                                </button>
+                                :
+                                <button title={user?.displayName}><FaUserCircle /></button>
+                            }
+                            <button
+                              onClick={handleLogOut}
+                              className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-rose-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                              aria-label="Log Out"
+                              title="Log Out"
+                            >
+                              Log out
+                            </button>
+                          </div>
+                          :
+                          <Link
+                            to="/login"
+                            className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-rose-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
+                            aria-label="Login"
+                            title="Login"
+                          >
+                            Login
+                          </Link>
+                      }
                     </li>
                   </ul>
                 </nav>
