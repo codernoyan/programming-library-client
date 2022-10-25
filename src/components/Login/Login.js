@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+
   const [userInfo, setUserInfo] = useState({
     userEmail: '',
     userPassword: ''
@@ -26,26 +30,39 @@ const Login = () => {
 
   const handlePasswordChange = (e) => {
     const password = e.target.value;
+    setUserInfo({ ...userInfo, userPassword: password });
     // password validation
-    if (!/(?=.*[a-z])/.test(password)) {
-      setError({ ...error, passwordError: 'Password must be at least one lowercase' });
-      setUserInfo({ ...userInfo, userPassword: '' });
-    } else if (!/(?=.*[A-Z]) /.test(password)) {
-      setError({ ...error, passwordError: 'Password must be at least one uppercase' });
-      setUserInfo({...userInfo, userPassword: ''})
-    } else if (!/(?=.{6,})/.test(password)) {
-      setError({...error, })
-    }
-    
-    else {
-      setUserInfo({ ...userInfo, userPassword: password });
-      setError({ ...error, passwordError: '' });
-    }
+    // if (!/(?=.*[a-z])/.test(password)) {
+    //   setError({ ...error, passwordError: 'Password must be at least one lowercase' });
+    //   setUserInfo({ ...userInfo, userPassword: '' });
+    // } else if (!/(?=.*[A-Z]) /.test(password)) {
+    //   setError({ ...error, passwordError: 'Password must be at least one uppercase' });
+    //   setUserInfo({ ...userInfo, userPassword: '' });
+    // } else if (!/(?=.{6,})/.test(password)) {
+    //   setError({ ...error, passwordError: 'Password must be 6 characters' });
+    //   setUserInfo({ ...userInfo, userPassword: '' });
+    // } else {
+    //   setError({ ...error, passwordError: '' });
+    //   setUserInfo({ ...userInfo, userPassword: password });
+    // }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.target;
     console.log(userInfo.userEmail, userInfo.userPassword);
+
+    loginUser(userInfo.userEmail, userInfo.userPassword)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success('Login Successful');
+        form.reset();
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error(err.message);
+      })
   }
 
   return (
@@ -55,20 +72,20 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="space-y-6 ng-untouched ng-pristine ng-valid">
           <div className="space-y-1 text-sm">
             <label htmlFor="email" className="block dark:text-gray-400">Email</label>
-            <input onChange={handleEmailChange} type="email" name="email" id="email" placeholder="Email" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+            <input onChange={handleEmailChange} type="email" name="email" id="email" placeholder="Email" className="w-full px-4 py-3 rounded-md border-2 dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
             {/* error message */}
             {error && <p className="text-red-500 font-medium">{error.emailError}</p>}
           </div>
           <div className="space-y-1 text-sm">
             <label htmlFor="password" className="block dark:text-gray-400">Password</label>
-            <input onChange={handlePasswordChange} type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400" />
+            <input onChange={handlePasswordChange} type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 border-2 rounded-md dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
             {/* error message */}
             {error && <p className="text-red-500 font-medium">{error.passwordError}</p>}
             <div className="flex justify-end text-xs dark:text-gray-400">
               <Link rel="noopener noreferrer" to="/forgotpass">Forgot Password?</Link>
             </div>
           </div>
-          <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Login</button>
+          <button className="block w-full p-3 font-semibold text-center rounded-sm text-white dark:bg-rose-400">Login</button>
         </form>
         <div className="flex items-center pt-4 space-x-1">
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
@@ -93,7 +110,7 @@ const Login = () => {
           </button>
         </div>
         <p className="text-xs text-center sm:px-6 dark:text-gray-400">Don't have an account?
-          <Link rel="noopener noreferrer" to="/register" className="underline dark:text-gray-100">Register</Link>
+          <Link rel="noopener noreferrer" to="/register" className="underline dark:text-rose-600">Register</Link>
         </p>
       </div>
     </div>
