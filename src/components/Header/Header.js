@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { FaUserCircle } from "react-icons/fa";
+import { FaEarlybirds } from "react-icons/fa";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -28,25 +29,11 @@ const Header = () => {
         <div className="flex items-center">
           <Link
             to="/"
-            aria-label="Company"
-            title="Company"
+            aria-label="Programming Library"
+            title="Programming Library"
             className="inline-flex items-center mr-8"
           >
-            <svg
-              className="w-8 text-deep-purple-accent-400"
-              viewBox="0 0 24 24"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeMiterlimit="10"
-              stroke="currentColor"
-              fill="none"
-            >
-              <rect x="3" y="1" width="7" height="12" />
-              <rect x="3" y="17" width="7" height="6" />
-              <rect x="14" y="1" width="7" height="6" />
-              <rect x="14" y="11" width="7" height="12" />
-            </svg>
+            <FaEarlybirds className="h-8 w-8"/>
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
               Programming Library
             </span>
