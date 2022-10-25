@@ -83,7 +83,7 @@ const Header = () => {
           </li>
           <li>
             {
-              user?.email ?
+              user?.uid ?
                 <div className="flex items-center gap-4">
                   {
                     user?.photoURL ?
@@ -226,7 +226,7 @@ const Header = () => {
                     </li>
                     <li>
                       {
-                        user?.email ?
+                        user?.uid ?
                           <div className="flex items-center gap-4">
                             {
                               user?.photoURL ?
