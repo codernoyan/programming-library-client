@@ -19,7 +19,7 @@ const CourseDetails = () => {
   const options = {
     orientation: 'landscape',
     unit: 'in',
-    format: [12, 6]
+    format: [10, 5]
   };
 
   return (

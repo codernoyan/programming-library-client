@@ -31,17 +31,17 @@ export const router = createBrowserRouter([
       },
       {
         path: '/courses',
-        loader: () => fetch('http://localhost:5000/courses'),
+        loader: () => fetch('https://programming-library-assignment-server.vercel.app/courses'),
         element: <PrivateRoute><Courses></Courses></PrivateRoute>
       },
       {
         path: '/course/:id',
-        loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`),
-        element: <CourseDetails></CourseDetails>
+        loader: ({params}) => fetch(`https://programming-library-assignment-server.vercel.app/courses/${params.id}`),
+        element: <PrivateRoute><CourseDetails></CourseDetails></PrivateRoute>
       },
       {
         path: '/checkout/:id',
-        loader: ({params}) => fetch(`http://localhost:5000/courses/${params.id}`),
+        loader: ({params}) => fetch(`https://programming-library-assignment-server.vercel.app/courses/${params.id}`),
         element: <PrivateRoute><Checkout></Checkout></PrivateRoute>
       },
       {
