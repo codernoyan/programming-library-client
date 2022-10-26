@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import { FaUserCircle } from "react-icons/fa";
 import { FaEarlybirds } from "react-icons/fa";
+import { HiSun } from "react-icons/hi";
+import { HiOutlineMoon } from "react-icons/hi";
+
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -81,8 +84,8 @@ const Header = () => {
               {/* dark/light toggle button */}
               <label for="Toggle3" className="inline-flex items-center p-2 rounded-md cursor-pointer dark:text-gray-800">
                 <input id="Toggle3" type="checkbox" className="hidden peer" />
-                <span className="px-4 py-2 rounded-l-md dark:bg-rose-400 text-white peer-checked:dark:bg-gray-300 peer-checked:text-gray-900">Light</span>
-                <span className="px-4 py-2 rounded-r-md dark:bg-gray-300 peer-checked:dark:bg-rose-400 peer-checked:text-white">Dark</span>
+                <span className="px-4 py-2 rounded-l-md dark:bg-rose-400 text-white peer-checked:dark:bg-gray-300 peer-checked:text-gray-900"><HiSun className="w-4 h-4" /></span>
+                <span className="px-4 py-2 rounded-r-md dark:bg-gray-300 peer-checked:dark:bg-rose-400 peer-checked:text-white"><HiOutlineMoon className="w-4 h-4" /></span>
               </label>
             </button>
           </li>
@@ -154,21 +157,7 @@ const Header = () => {
                       title="Company"
                       className="inline-flex items-center"
                     >
-                      <svg
-                        className="w-8 text-deep-purple-accent-400"
-                        viewBox="0 0 24 24"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeMiterlimit="10"
-                        stroke="currentColor"
-                        fill="none"
-                      >
-                        <rect x="3" y="1" width="7" height="12" />
-                        <rect x="3" y="17" width="7" height="6" />
-                        <rect x="14" y="1" width="7" height="6" />
-                        <rect x="14" y="11" width="7" height="12" />
-                      </svg>
+                      <FaEarlybirds className="h-8 w-8" />
                       <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
                         Programming Library
                       </span>
@@ -228,7 +217,12 @@ const Header = () => {
                         title="Sign in"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        Light/Dark
+                        {/* dark/light toggle button */}
+                        <label for="Toggle3" className="inline-flex items-center p-2 rounded-md cursor-pointer dark:text-gray-800">
+                          <input id="Toggle3" type="checkbox" className="hidden peer" />
+                          <span className="px-4 py-2 rounded-l-md dark:bg-rose-400 text-white peer-checked:dark:bg-gray-300 peer-checked:text-gray-900"><HiSun className="w-4 h-4" /></span>
+                          <span className="px-4 py-2 rounded-r-md dark:bg-gray-300 peer-checked:dark:bg-rose-400 peer-checked:text-white"><HiOutlineMoon className="w-4 h-4" /></span>
+                        </label>
                       </button>
                     </li>
                     <li>
@@ -237,11 +231,13 @@ const Header = () => {
                           <div className="flex items-center gap-4">
                             {
                               user?.photoURL ?
-                                <button title={user?.displayName}>
+                                <button aria-label="Log Out" title={user?.displayName}>
                                   <img className="w-12 h-12 rounded-full" src={user?.photoURL} alt="user"></img>
                                 </button>
                                 :
-                                <button title={user?.displayName}><FaUserCircle /></button>
+                                <button aria-label="Log Out" title={user?.displayName}>
+                                  <FaUserCircle className="w-12 h-12" />
+                                </button>
                             }
                             <button
                               onClick={handleLogOut}
