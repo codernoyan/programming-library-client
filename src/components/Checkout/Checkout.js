@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Checkout = () => {
   const details = useLoaderData();
-  const { about, id, img, price, languageName, keyFeatures } = details;
+  const { img, price, languageName } = details;
   const { user } = useContext(AuthContext);
   return (
     <>
@@ -54,7 +54,7 @@ const Checkout = () => {
               <div className="mx-auto max-w-lg px-4 lg:px-8">
                 <div className="flex items-center">
                   <span className="h-10 w-10 rounded-full bg-blue-900" />
-                  <h2 className="ml-4 font-medium uppercase">Courses</h2>
+                  <h2 className="ml-4 font-medium uppercase">Your Courses</h2>
                 </div>
                 <div className="mt-8">
                   <p className="text-2xl font-medium tracking-tight">${price}</p>
@@ -94,7 +94,7 @@ const Checkout = () => {
             </div>
             <div className="bg-white py-12 md:py-24">
               <div className="mx-auto max-w-lg px-4 lg:px-8">
-                <form className="grid grid-cols-6 gap-4">
+                <form onSubmit={(e)=> e.preventDefault()} className="grid grid-cols-6 gap-4">
                   <div className="col-span-6">
                     <label className="mb-1 block text-sm text-gray-600" htmlFor="name">
                       Name
@@ -132,12 +132,11 @@ const Checkout = () => {
                       <div>
                         <label className="sr-only" htmlFor="country">Country</label>
                         <select className="relative w-full rounded-t-lg border-gray-200 p-2.5 text-sm focus:z-10" id="country" name="country" autoComplete="country-name">
-                          <option>England</option>
-                          <option>Wales</option>
-                          <option>Scotland</option>
-                          <option>France</option>
-                          <option>Belgium</option>
-                          <option>Japan</option>
+                          <option>Bangladesh</option>
+                          <option>India</option>
+                          <option>Nepal</option>
+                          <option>China</option>
+                          <option>Bhutan</option>
                         </select>
                       </div>
                       <div>
@@ -149,7 +148,7 @@ const Checkout = () => {
                     </div>
                   </fieldset>
                   <div className="col-span-6">
-                    <button className="block w-full rounded-lg bg-black p-2.5 text-sm text-white" type="submit">
+                    <button className="block w-full rounded-lg bg-rose-400 p-2.5 text-sm text-white" type="submit">
                       Pay Now
                     </button>
                   </div>

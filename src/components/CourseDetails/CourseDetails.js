@@ -1,6 +1,10 @@
 import React from 'react';
+import { createRef } from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import Features from '../Features/Features';
+import ReactToPdf from 'react-to-pdf';
+
+const ref = createRef();
 
 const CourseDetails = () => {
   const details = useLoaderData();
@@ -10,7 +14,13 @@ const CourseDetails = () => {
 
   const handleNavigate = () => {
     navigate(`/checkout/${id}`);
-  }
+  };
+
+  const options = {
+    orientation: 'landscape',
+    unit: 'in',
+    format: [12, 6]
+  };
 
   return (
     <div>
@@ -56,28 +66,35 @@ const CourseDetails = () => {
         <div className="grid gap-5 row-gap-10 lg:grid-cols-2">
           <div className="flex flex-col justify-center">
             <div className="max-w-xl mb-6">
-              <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
-                {languageName}
-              </h2>
-              <p className="text-base text-gray-700 md:text-lg">
-                {about.slice(0, 350)}...
+              <div ref={ref}>
+                <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+                  {languageName}
+                </h2>
+                <p className="text-base text-gray-700 md:text-lg">
+                  {about.slice(0, 400)}...
+                </p>
+              </div>
+              <p className="mb-4 mt-2 text-sm font-bold tracking-widest uppercase">
+                Key Features:
               </p>
-            </div>
-            <p className="mb-4 text-sm font-bold tracking-widest uppercase">
-              Key Features:
-            </p>
-            <div className="grid space-y-3 sm:gap-2 sm:grid-cols-2 sm:space-y-0">
-              <ul className="space-y-3">
-                {
-                  keyFeatures.map((feature, index) => <Features key={index} feature={feature}></Features>)
-                }
-              </ul>
+              <div className="grid space-y-3 sm:gap-2 sm:grid-cols-2 sm:space-y-0">
+                <ul className="space-y-3">
+                  {
+                    keyFeatures.map((feature, index) => <Features key={index} feature={feature}></Features>)
+                  }
+                </ul>
+              </div>
             </div>
             <hr className='my-3' />
             <div>
               <h2 className="text-2xl font-bold">Price: <span className="text-rose-400">{price}$</span></h2>
               <div className="flex gap-2 my-1">
-                <button className="bg-rose-400 py-1 px-2 text-white font-medium rounded-sm">Download PDF</button>
+                <ReactToPdf targetRef={ref} filename={`${languageName}_course_info.pdf`} options={options} x={.5} y={.5} scale={0.8}>
+                  {({ toPdf }) => (
+                    <button className="bg-rose-400 py-1 px-2 text-white font-medium rounded-sm" onClick={toPdf}>Download PDF</button>
+                  )}
+                </ReactToPdf>
+                {/* <button className="bg-rose-400 py-1 px-2 text-white font-medium rounded-sm">Download PDF</button> */}
                 <button onClick={handleNavigate} className="bg-rose-400 py-1 px-2 text-white font-medium rounded-sm">Get Premium Access</button>
               </div>
             </div>
