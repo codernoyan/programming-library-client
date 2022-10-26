@@ -21,7 +21,7 @@ const Courses = () => {
         </aside>
         <div className="lg:col-span-3">
           {/* courses */}
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid lg:grid-cols-3 gap-4 m-4 lg:m-0">
             {
               coursesData.map(course => <Course key={course.id} course={course}></Course>)
             }
