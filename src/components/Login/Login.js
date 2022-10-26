@@ -1,19 +1,23 @@
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
   const { loginUser, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+  console.log(location?.state?.from?.pathname);
 
   const [userInfo, setUserInfo] = useState({
-    userEmail: '',
-    userPassword: ''
+    userEmail: "",
+    userPassword: ""
   });
 
   const [error, setError] = useState({
-    emailError: '',
-    passwordError: ''
+    emailError: "",
+    passwordError: ""
   })
 
   const handleEmailChange = (e) => {
@@ -21,25 +25,33 @@ const Login = () => {
     // email validation
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError({ ...error, emailError: 'Please input valid email address' });
-      setUserInfo({ ...userInfo, userEmail: '' });
+      setUserInfo({ ...userInfo, userEmail: "" });
     } else {
+      setError({ ...error, emailError: "" });
       setUserInfo({ ...userInfo, userEmail: email });
-      setError({ ...error, emailError: '' });
     }
   }
 
   const handlePasswordChange = (e) => {
     const password = e.target.value;
     setUserInfo({ ...userInfo, userPassword: password });
-    // password validation
-    // if (!/(?=.*[a-z])/.test(password)) {
-    //   setError({ ...error, passwordError: 'Password must be at least one lowercase' });
+
+    // const lengthError = !/(?=.{8,})/.test(password);
+    // const lowerCaseError = !/(?=.*[a-z])/.test(password);
+    // const upperCaseError = !/(?=.*[A-Z])/.test(password);
+    // const specialCharError = !/(?=.*[!#$%&? "])/.test(password);
+
+    // if (lowerCaseError) {
+    //   setError({ ...error, passwordError: 'Password must be at one lowercase letter' });
     //   setUserInfo({ ...userInfo, userPassword: '' });
-    // } else if (!/(?=.*[A-Z]) /.test(password)) {
-    //   setError({ ...error, passwordError: 'Password must be at least one uppercase' });
+    // } else if (upperCaseError) {
+    //   setError({ ...error, passwordError: 'Password must be at one uppercase letter' });
     //   setUserInfo({ ...userInfo, userPassword: '' });
-    // } else if (!/(?=.{6,})/.test(password)) {
-    //   setError({ ...error, passwordError: 'Password must be 6 characters' });
+    // } else if (specialCharError) {
+    //   setError({ ...error, passwordError: 'Password must be at one special character' });
+    //   setUserInfo({ ...userInfo, userPassword: '' });
+    // } else if (lengthError) {
+    //   setError({ ...error, passwordError: 'Password must be at least 8 characters' });
     //   setUserInfo({ ...userInfo, userPassword: '' });
     // } else {
     //   setError({ ...error, passwordError: '' });
@@ -58,6 +70,7 @@ const Login = () => {
         console.log(user);
         toast.success('Login Successful');
         form.reset();
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
@@ -70,7 +83,8 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        toast.success('Sign in with Google Successful')
+        toast.success('Sign in with Google Successful');
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
@@ -83,7 +97,8 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        toast.success('Sign in with Github Successful')
+        toast.success('Sign in with Github Successful');
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
@@ -100,13 +115,13 @@ const Login = () => {
             <label htmlFor="email" className="block dark:text-gray-400">Email</label>
             <input onChange={handleEmailChange} type="email" name="email" id="email" placeholder="Email" className="w-full px-4 py-3 rounded-md border-2 dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
             {/* error message */}
-            {error && <p className="text-red-500 font-medium">{error.emailError}</p>}
+            {error.emailError && <p className="text-red-500 font-medium">{error.emailError}</p>}
           </div>
           <div className="space-y-1 text-sm">
             <label htmlFor="password" className="block dark:text-gray-400">Password</label>
             <input onChange={handlePasswordChange} type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 border-2 rounded-md dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
             {/* error message */}
-            {error && <p className="text-red-500 font-medium">{error.passwordError}</p>}
+            {error.passwordError && <p className="text-red-500 font-medium">{error.passwordError}</p>}
             <div className="flex justify-end text-xs dark:text-gray-400">
               <Link rel="noopener noreferrer" to="/forgotpass">Forgot Password?</Link>
             </div>
