@@ -33,7 +33,7 @@ const Header = () => {
             title="Programming Library"
             className="inline-flex items-center mr-8"
           >
-            <FaEarlybirds className="h-8 w-8"/>
+            <FaEarlybirds className="h-8 w-8" />
             <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
               Programming Library
             </span>
@@ -78,7 +78,12 @@ const Header = () => {
               title="Sign in"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              Light/Dark
+              {/* dark/light toggle button */}
+              <label for="Toggle3" className="inline-flex items-center p-2 rounded-md cursor-pointer dark:text-gray-800">
+                <input id="Toggle3" type="checkbox" className="hidden peer" />
+                <span className="px-4 py-2 rounded-l-md dark:bg-rose-400 peer-checked:dark:bg-gray-300">Light</span>
+                <span className="px-4 py-2 rounded-r-md dark:bg-gray-300 peer-checked:dark:bg-rose-400 peer-checked:text-white">Dark</span>
+              </label>
             </button>
           </li>
           <li>
@@ -91,7 +96,9 @@ const Header = () => {
                         <img className="w-12 h-12 rounded-full" src={user?.photoURL} alt="user"></img>
                       </button>
                       :
-                      <button aria-label="Log Out" title={user?.displayName}><FaUserCircle /></button>
+                      <button aria-label="Log Out" title={user?.displayName}>
+                        <FaUserCircle className="w-12 h-12" />
+                      </button>
                   }
                   <button
                     onClick={handleLogOut}
