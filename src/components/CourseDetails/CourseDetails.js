@@ -1,62 +1,81 @@
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import Features from '../Features/Features';
 
 const CourseDetails = () => {
   const details = useLoaderData();
   console.log(details);
   const { about, id, img, price, languageName, keyFeatures } = details;
   return (
-    <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-      <div className="flex flex-col max-w-screen-lg overflow-hidden bg-white border rounded shadow-sm lg:flex-row sm:mx-auto">
-        <div className="relative lg:w-1/2">
-          <img
-            src="https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
-            alt=""
-            className="object-cover w-full lg:absolute h-80 lg:h-full"
-          />
-          <svg
-            className="absolute top-0 right-0 hidden h-full text-white lg:inline-block"
-            viewBox="0 0 20 104"
-            fill="currentColor"
-          >
-          </svg>
-        </div>
-        <div className="flex flex-col justify-center p-8 bg-white lg:p-16 lg:pl-10 lg:w-1/2">
-          <div>
-            <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-              Brand new
-            </p>
+    <div>
+      {/* course title */}
+      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-8">
+        <div className="max-w-xl sm:mx-auto lg:max-w-2xl">
+          <div className="flex flex-col mb-16 sm:text-center sm:mb-0">
+
+            <div className="max-w-xl mb-4 md:mx-auto sm:text-center lg:max-w-2xl md:mb-2">
+              <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+                <span className="relative inline-block">
+                  <svg
+                    viewBox="0 0 52 24"
+                    fill="currentColor"
+                    className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-blue-gray-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
+                  >
+                    <defs>
+                      <pattern
+                        id="e77df901-b9d7-4b9b-822e-16b2d410795b"
+                        x="0"
+                        y="0"
+                        width=".135"
+                        height=".30"
+                      >
+                        <circle cx="1" cy="1" r=".7" />
+                      </pattern>
+                    </defs>
+                    <rect
+                      fill="url(#e77df901-b9d7-4b9b-822e-16b2d410795b)"
+                      width="52"
+                      height="24"
+                    />
+                  </svg>
+                  <span className="relative">{languageName} Course Details</span>
+                </span>
+              </h2>
+            </div>
           </div>
-          <h5 className="mb-3 text-3xl font-extrabold leading-none sm:text-4xl">
-            Your new ideal style
-          </h5>
-          <p className="mb-5 text-gray-800">
-            <span className="font-bold">Lorem ipsum</span> dolor sit amet,
-            consectetur adipiscing elit. Etiam sem neque, molestie sit amet
-            venenatis et, dignissim ut erat. Sed aliquet velit id dui eleifend,
-            sed consequat odio sollicitudin.
-          </p>
-          <div className="flex items-center">
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-deep-purple-accent-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-            >
-              Get started
-            </button>
-            <a
-              href="/"
-              aria-label=""
-              className="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800"
-            >
-              Learn More
-              <svg
-                className="inline-block w-3 ml-2"
-                fill="currentColor"
-                viewBox="0 0 12 12"
-              >
-                <path d="M9.707,5.293l-5-5A1,1,0,0,0,3.293,1.707L7.586,6,3.293,10.293a1,1,0,1,0,1.414,1.414l5-5A1,1,0,0,0,9.707,5.293Z" />
-              </svg>
-            </a>
+        </div>
+      </div>
+      {/* course details */}
+      <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-8">
+        <div className="grid gap-5 row-gap-10 lg:grid-cols-2">
+          <div className="flex flex-col justify-center">
+            <div className="max-w-xl mb-6">
+              <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl sm:leading-none">
+                {languageName}
+              </h2>
+              <p className="text-base text-gray-700 md:text-lg">
+                {about.slice(0, 350)}...
+              </p>
+            </div>
+            <p className="mb-4 text-sm font-bold tracking-widest uppercase">
+              Key Features:
+            </p>
+            <div className="grid space-y-3 sm:gap-2 sm:grid-cols-2 sm:space-y-0">
+              <ul className="space-y-3">
+                {
+                  keyFeatures.map((feature, index) => <Features key={index} feature={feature}></Features>)
+                }
+              </ul>
+            </div>
+            <hr className='my-3' />
+            <h2 className="text-2xl font-bold">Price: <span className="text-rose-400">{price}$</span></h2>
+          </div>
+          <div>
+            <img
+              className="object-cover w-full h-56 rounded shadow-lg sm:h-96"
+              src={img}
+              alt="course"
+            />
           </div>
         </div>
       </div>
