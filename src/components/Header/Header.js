@@ -81,7 +81,7 @@ const Header = () => {
               {/* dark/light toggle button */}
               <label for="Toggle3" className="inline-flex items-center p-2 rounded-md cursor-pointer dark:text-gray-800">
                 <input id="Toggle3" type="checkbox" className="hidden peer" />
-                <span className="px-4 py-2 rounded-l-md dark:bg-rose-400 peer-checked:dark:bg-gray-300">Light</span>
+                <span className="px-4 py-2 rounded-l-md dark:bg-rose-400 text-white peer-checked:dark:bg-gray-300 peer-checked:text-gray-900">Light</span>
                 <span className="px-4 py-2 rounded-r-md dark:bg-gray-300 peer-checked:dark:bg-rose-400 peer-checked:text-white">Dark</span>
               </label>
             </button>
