@@ -27,7 +27,7 @@ const Blog = () => {
             <h3 className="font-semibold md:col-span-5">What is Node? How does Node work?</h3>
             <p className="md:pl-0 md:col-span-7">
               <span>Node.js is an open-source backend javascript runtime environment. It is a used as backend service where javascript works on the server-side of the application. This way javascript is used on both frontend and backend. Node.js runs on chrome v8 engine which converts javascript code into machine code, it is highly scalable, lightweight, fast, and data-intensive.</span>
-              <span>
+              <span className="block">
                 Node.js accepts the request from the clients and sends the response, while working with the request node.js handles them with a single thread. To operate I/O operations or requests node.js use the concept of threads. Thread is a sequence of instructions that the server needs to perform. It runs parallel on the server to provide the information to multiple clients. Node.js is an event loop single-threaded language. It can handle concurrent requests with a single thread without blocking it for one request. Node.js basically works on two concept - Asynchronous, Non-blocking I/O.
               </span>
             </p>
