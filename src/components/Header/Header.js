@@ -32,8 +32,6 @@ const Header = () => {
         <div className="flex items-center">
           <Link
             to="/"
-            aria-label="Programming Library"
-            title="Programming Library"
             className="inline-flex items-center mr-8"
           >
             <FaEarlybirds className="h-8 w-8" />
@@ -45,8 +43,6 @@ const Header = () => {
             <li>
               <Link
                 to="/courses"
-                aria-label="Our product"
-                title="Our product"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Courses
@@ -55,8 +51,6 @@ const Header = () => {
             <li>
               <Link
                 to="/faq"
-                aria-label="Our product"
-                title="Our product"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 FAQ
@@ -65,8 +59,6 @@ const Header = () => {
             <li>
               <Link
                 to="/blog"
-                aria-label="Product pricing"
-                title="Product pricing"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
               >
                 Blog
@@ -116,8 +108,6 @@ const Header = () => {
                 <Link
                   to="/login"
                   className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-rose-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                  aria-label="Login"
-                  title="Login"
                 >
                   Login
                 </Link>
@@ -153,8 +143,6 @@ const Header = () => {
                   <div>
                     <Link
                       to="/"
-                      aria-label="Company"
-                      title="Company"
                       className="inline-flex items-center"
                     >
                       <FaEarlybirds className="h-8 w-8" />
@@ -184,8 +172,6 @@ const Header = () => {
                     <li>
                       <Link
                         to="/courses"
-                        aria-label="Our product"
-                        title="Our product"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Courses
@@ -194,8 +180,6 @@ const Header = () => {
                     <li>
                       <Link
                         to="/faq"
-                        aria-label="Our product"
-                        title="Our product"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         FAQ
@@ -204,8 +188,6 @@ const Header = () => {
                     <li>
                       <Link
                         to="/blog"
-                        aria-label="Product pricing"
-                        title="Product pricing"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
                         Blog
@@ -242,8 +224,6 @@ const Header = () => {
                             <button
                               onClick={handleLogOut}
                               className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-rose-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                              aria-label="Log Out"
-                              title="Log Out"
                             >
                               Log out
                             </button>
@@ -252,8 +232,6 @@ const Header = () => {
                           <Link
                             to="/login"
                             className="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-rose-400 hover:bg-deep-purple-accent-700 focus:shadow-outline focus:outline-none"
-                            aria-label="Login"
-                            title="Login"
                           >
                             Login
                           </Link>
