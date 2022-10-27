@@ -149,7 +149,7 @@ const Register = () => {
             </div>
           </div>
 
-          <button className="block w-full p-3 font-semibold text-center rounded-sm text-white dark:bg-rose-400">Login</button>
+          <button className="block w-full p-3 font-semibold text-center rounded-sm text-white dark:bg-rose-400">Register</button>
         </form>
         <div className="flex items-center pt-4 space-x-1">
           <div className="flex-1 h-px sm:w-16 dark:bg-gray-700"></div>
