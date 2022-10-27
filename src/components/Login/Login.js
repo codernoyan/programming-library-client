@@ -8,7 +8,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
-  console.log(location?.state?.from?.pathname);
 
   const [userInfo, setUserInfo] = useState({
     userEmail: "",
@@ -35,34 +34,11 @@ const Login = () => {
   const handlePasswordChange = (e) => {
     const password = e.target.value;
     setUserInfo({ ...userInfo, userPassword: password });
-
-    // const lengthError = !/(?=.{8,})/.test(password);
-    // const lowerCaseError = !/(?=.*[a-z])/.test(password);
-    // const upperCaseError = !/(?=.*[A-Z])/.test(password);
-    // const specialCharError = !/(?=.*[!#$%&? "])/.test(password);
-
-    // if (lowerCaseError) {
-    //   setError({ ...error, passwordError: 'Password must be at one lowercase letter' });
-    //   setUserInfo({ ...userInfo, userPassword: '' });
-    // } else if (upperCaseError) {
-    //   setError({ ...error, passwordError: 'Password must be at one uppercase letter' });
-    //   setUserInfo({ ...userInfo, userPassword: '' });
-    // } else if (specialCharError) {
-    //   setError({ ...error, passwordError: 'Password must be at one special character' });
-    //   setUserInfo({ ...userInfo, userPassword: '' });
-    // } else if (lengthError) {
-    //   setError({ ...error, passwordError: 'Password must be at least 8 characters' });
-    //   setUserInfo({ ...userInfo, userPassword: '' });
-    // } else {
-    //   setError({ ...error, passwordError: '' });
-    //   setUserInfo({ ...userInfo, userPassword: password });
-    // }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
-    console.log(userInfo.userEmail, userInfo.userPassword);
 
     loginUser(userInfo.userEmail, userInfo.userPassword)
       .then((result) => {

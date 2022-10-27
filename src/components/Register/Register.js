@@ -36,10 +36,28 @@ const Register = () => {
   }
 
   const handlePasswordChange = (e) => {
-    const password = e.target.value;
-    setUserInfo({ ...userInfo, userPassword: password });
+    const password = e.target.value;   
+    const lengthError = !/(?=.{6,})/.test(password);
+    const lowerCaseError = !/(?=.*[a-z])/.test(password);
+    const upperCaseError = !/(?=.*[A-Z])/.test(password);
+
+    // password validation
+    if (lowerCaseError) {
+      setError({ ...error, passwordError: 'Password must be at one lowercase letter' });
+      setUserInfo({ ...userInfo, userPassword: '' });
+    } else if (upperCaseError) {
+      setError({ ...error, passwordError: 'Password must be at one uppercase letter' });
+      setUserInfo({ ...userInfo, userPassword: '' });
+    } else if (lengthError) {
+      setError({ ...error, passwordError: 'Password must be at least 6 characters' });
+      setUserInfo({ ...userInfo, userPassword: '' });
+    } else {
+      setError({ ...error, passwordError: '' });
+      setUserInfo({ ...userInfo, userPassword: password });
+    }
   }
 
+  // update users profile
   const updateProfile = (profile) => {
     updateUserProfile(profile)
       .then(() => {
@@ -60,7 +78,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        // update display name and phto url
+        // update display name and photo url
         updateProfile(userProfile);
         toast.success('Register User Successful');
         form.reset();
@@ -73,7 +91,6 @@ const Register = () => {
 
   // sign in with google
   const handleGoogleSignIn = () => {
-    console.log('hello')
     googleSignIn()
       .then((result) => {
         const user = result.user;
@@ -119,14 +136,14 @@ const Register = () => {
             <label htmlFor="email" className="block dark:text-gray-400">Email</label>
             <input onChange={handleEmailChange} type="email" name="email" id="email" placeholder="Email" className="w-full px-4 py-3 rounded-md border-2 dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
             {/* error message */}
-            {error && <p className="text-red-500 font-medium">{error.emailError}</p>}
+            {error.emailError && <p className="text-red-500 font-medium">{error.emailError}</p>}
           </div>
 
           <div className="space-y-1 text-sm">
             <label htmlFor="password" className="block dark:text-gray-400">Password</label>
             <input onChange={handlePasswordChange} type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 border-2 rounded-md dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
             {/* error message */}
-            {error && <p className="text-red-500 font-medium">{error.passwordError}</p>}
+            {error.passwordError && <p className="text-red-500 font-medium">{error.passwordError}</p>}
             <div className="flex justify-end text-xs dark:text-gray-400">
               <Link rel="noopener noreferrer" to="/forgotpass">Forgot Password?</Link>
             </div>
