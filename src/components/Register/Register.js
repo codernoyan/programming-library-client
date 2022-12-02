@@ -36,7 +36,7 @@ const Register = () => {
   }
 
   const handlePasswordChange = (e) => {
-    const password = e.target.value;   
+    const password = e.target.value;
     const lengthError = !/(?=.{6,})/.test(password);
     const lowerCaseError = !/(?=.*[a-z])/.test(password);
     const upperCaseError = !/(?=.*[A-Z])/.test(password);
@@ -64,8 +64,8 @@ const Register = () => {
         console.log('user profile updated');
       })
       .catch((err) => {
-      console.error(err)
-    })
+        console.error(err)
+      })
   }
 
   // create user
