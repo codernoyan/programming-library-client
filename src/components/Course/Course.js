@@ -11,7 +11,7 @@ const Course = ({ course }) => {
 
   return (
     <aside className="overflow-hidden rounded-lg shadow transition hover:shadow-lg">
-      <img alt="course" src={img} className="h-56 w-full object-cover" />
+      <img alt="course" src={img} className="h-56 w-full object-cover border-2 border-gray-100" />
       <div className="bg-white p-4 sm:p-6">
         <p className="block text-xs text-gray-500">
           {duration}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
+import { toast } from 'react-hot-toast';
 import { useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
@@ -7,6 +8,11 @@ const Checkout = () => {
   const details = useLoaderData();
   const { img, price, languageName } = details;
   const { user } = useContext(AuthContext);
+
+  const handlePremiumAccess = () => {
+    toast.success('Coming soon');
+  }
+  
   return (
     <>
       <div className="px-4 py-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-8">
@@ -148,7 +154,7 @@ const Checkout = () => {
                     </div>
                   </fieldset>
                   <div className="col-span-6">
-                    <button className="block w-full rounded-lg bg-rose-400 p-2.5 text-sm text-white" type="submit">
+                    <button onClick={handlePremiumAccess} className="block w-full rounded-lg bg-rose-400 p-2.5 text-sm text-white" type="submit">
                       Pay Now
                     </button>
                   </div>

@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
-import { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { FaEarlybirds, FaUserCircle } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
-import { FaUserCircle } from "react-icons/fa";
-import { FaEarlybirds } from "react-icons/fa";
-import { HiSun } from "react-icons/hi";
-import { HiOutlineMoon } from "react-icons/hi";
 
 
 const Header = () => {
@@ -67,20 +63,20 @@ const Header = () => {
           </ul>
         </div>
         <ul className="flex items-center hidden space-x-8 lg:flex">
-          <li>
+          {/* dark/light toggle button */}
+          {/* <li>
             <button
               aria-label="Sign in"
               title="Sign in"
               className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
             >
-              {/* dark/light toggle button */}
               <label for="Toggle3" className="inline-flex items-center p-2 rounded-md cursor-pointer dark:text-gray-800">
                 <input id="Toggle3" type="checkbox" className="hidden peer" />
                 <span className="px-4 py-2 rounded-l-md dark:bg-rose-400 text-white peer-checked:dark:bg-gray-300 peer-checked:text-gray-900"><HiSun className="w-4 h-4" /></span>
                 <span className="px-4 py-2 rounded-r-md dark:bg-gray-300 peer-checked:dark:bg-rose-400 peer-checked:text-white"><HiOutlineMoon className="w-4 h-4" /></span>
               </label>
             </button>
-          </li>
+          </li> */}
           <li>
             {
               user?.uid ?
@@ -193,20 +189,21 @@ const Header = () => {
                         Blog
                       </Link>
                     </li>
-                    <li>
+                    {/* dark/light toggle button */}
+                    {/* <li>
                       <button
                         aria-label="Sign in"
                         title="Sign in"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-deep-purple-accent-400"
                       >
-                        {/* dark/light toggle button */}
+                        
                         <label for="Toggle3" className="inline-flex items-center p-2 rounded-md cursor-pointer dark:text-gray-800">
                           <input id="Toggle3" type="checkbox" className="hidden peer" />
                           <span className="px-4 py-2 rounded-l-md dark:bg-rose-400 text-white peer-checked:dark:bg-gray-300 peer-checked:text-gray-900"><HiSun className="w-4 h-4" /></span>
                           <span className="px-4 py-2 rounded-r-md dark:bg-gray-300 peer-checked:dark:bg-rose-400 peer-checked:text-white"><HiOutlineMoon className="w-4 h-4" /></span>
                         </label>
                       </button>
-                    </li>
+                    </li> */}
                     <li>
                       {
                         user?.uid ?

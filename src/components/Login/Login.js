@@ -34,7 +34,17 @@ const Login = () => {
 
   const handlePasswordChange = (e) => {
     const password = e.target.value;
-    setUserInfo({ ...userInfo, userPassword: password });
+    const lengthError = !/(?=.{6,})/.test(password);
+
+    if (lengthError) {
+      setError({ ...error, passwordError: 'Password should be at least 6 characters or longer' });
+      setUserInfo({ ...userInfo, userPassword: '' });
+    } else {
+      setError({ ...error, passwordError: '' });
+      setUserInfo({ ...userInfo, userPassword: password });
+    }
+    
+    // setUserInfo({ ...userInfo, userPassword: password });
   }
 
   const handleSubmit = (e) => {
@@ -90,7 +100,7 @@ const Login = () => {
   };
 
   if (loading) {
-    return <Spinner/>
+    return <Spinner />
   }
 
   return (
@@ -108,7 +118,10 @@ const Login = () => {
             <label htmlFor="password" className="block dark:text-gray-400">Password</label>
             <input onChange={handlePasswordChange} type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 border-2 rounded-md dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
             {/* error message */}
-            {error.passwordError && <p className="text-red-500 font-medium">{error.passwordError}</p>}
+            {error.passwordError && <>
+              <p className="text-red-500 font-medium">{error.passwordError}</p>
+              <p className="text-gray-600 font-medium">Password Hint: mY4585</p>
+            </>}
             <div className="flex justify-end text-xs dark:text-gray-400">
               <Link rel="noopener noreferrer" to="/forgotpass">Forgot Password?</Link>
             </div>
