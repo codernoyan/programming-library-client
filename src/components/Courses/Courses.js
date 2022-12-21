@@ -1,10 +1,30 @@
-import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Course from '../Course/Course';
+import Spinner from '../Spinner/Spinner';
 
 const Courses = () => {
-  const coursesData = useLoaderData();
+  // const coursesData = useLoaderData();
+  const [coursesData, setCoursesData] = useState([]);
+  const [loading, setLoading] = useState(true);
   // console.log(coursesData);
+  useEffect(() => {
+    setLoading(true);
+    fetch('https://programming-library-assignment-server.vercel.app/courses')
+      .then(res => res.json())
+      .then(data => {
+        setCoursesData(data);
+        setLoading(false);
+      }).catch(err => {
+        console.error(err);
+        setLoading(false);
+      })
+  }, []);
+
+  if (loading) {
+    return <Spinner/>
+  }
 
   return (
     <div className="container mx-auto">

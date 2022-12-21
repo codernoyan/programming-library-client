@@ -88,7 +88,7 @@ const Header = () => {
                   {
                     user?.photoURL ?
                       <button aria-label="Log Out" title={user?.displayName}>
-                        <img className="w-12 h-12 rounded-full" src={user?.photoURL} alt="user"></img>
+                        <img className="w-12 h-12 rounded-full object-cover" src={user?.photoURL} alt="user"></img>
                       </button>
                       :
                       <button aria-label="Log Out" title={user?.displayName}>
@@ -214,7 +214,7 @@ const Header = () => {
                             {
                               user?.photoURL ?
                                 <button aria-label="Log Out" title={user?.displayName}>
-                                  <img className="w-12 h-12 rounded-full" src={user?.photoURL} alt="user"></img>
+                                  <img className="w-12 h-12 rounded-full object-cover" src={user?.photoURL} alt="user"></img>
                                 </button>
                                 :
                                 <button aria-label="Log Out" title={user?.displayName}>

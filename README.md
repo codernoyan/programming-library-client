@@ -7,7 +7,7 @@
   >
    > - A user can register an account with email and password to get access to see course details
    > - Users can register or login via Google and GitHub.
-   > - Users can see course details by register or login 
+   > - Users can see course details by register or login. 
    > - Users can and can download course info in pdf format.
    > - Users can get premium access to a particular course by paying a certain amount.
 

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import Spinner from '../Spinner/Spinner';
 
 const Register = () => {
   // user auth
-  const { createUser, updateUserProfile, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const { createUser, updateUserProfile, googleSignIn, githubSignIn, loading, setLoading } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const [userProfile, setUserProfile] = useState({
     displayName: '',
@@ -33,7 +36,7 @@ const Register = () => {
       setUserInfo({ ...userInfo, userEmail: email });
       setError({ ...error, emailError: '' });
     }
-  }
+  };
 
   const handlePasswordChange = (e) => {
     const password = e.target.value;
@@ -55,7 +58,7 @@ const Register = () => {
       setError({ ...error, passwordError: '' });
       setUserInfo({ ...userInfo, userPassword: password });
     }
-  }
+  };
 
   // update users profile
   const updateProfile = (profile) => {
@@ -66,7 +69,7 @@ const Register = () => {
       .catch((err) => {
         console.error(err)
       })
-  }
+  };
 
   // create user
   const handleSubmit = (e) => {
@@ -82,12 +85,15 @@ const Register = () => {
         updateProfile(userProfile);
         toast.success('Register User Successful');
         form.reset();
+        setLoading(false);
+        navigate('/');
       })
       .catch((err) => {
         console.error(err);
         toast.error(err.message);
+        setLoading(false);
       })
-  }
+  };
 
   // sign in with google
   const handleGoogleSignIn = () => {
@@ -95,25 +101,35 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        toast.success('Sign in with Google Successful')
+        toast.success('Sign in with Google Successful');
+        setLoading(false);
+        navigate('/');
       })
       .catch((err) => {
         console.error(err);
         toast.error(err.message);
+        setLoading(false);
       })
-  }
+  };
   // sign in with github
   const handleGithubSignIn = () => {
     githubSignIn()
       .then((result) => {
         const user = result.user;
         console.log(user);
-        toast.success('Sign in with Github Successful')
+        toast.success('Sign in with Github Successful');
+        setLoading(false);
+        navigate('/');
       })
       .catch((err) => {
         console.error(err);
         toast.error(err.message);
+        setLoading(false);
       })
+  };
+
+  if (loading) {
+    return <Spinner/>
   }
 
   return (
@@ -143,7 +159,10 @@ const Register = () => {
             <label htmlFor="password" className="block dark:text-gray-400">Password</label>
             <input onChange={handlePasswordChange} type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 border-2 rounded-md dark:border-gray-700 bg-white text-black focus:dark:border-violet-400" />
             {/* error message */}
-            {error.passwordError && <p className="text-red-500 font-medium">{error.passwordError}</p>}
+            {error.passwordError && <>
+              <p className="text-red-500 font-medium">{error.passwordError}</p>
+              <p className="text-gray-600 font-medium">Password Hint: mY4585</p>
+            </>}
             <div className="flex justify-end text-xs dark:text-gray-400">
               <Link rel="noopener noreferrer" to="/forgotpass">Forgot Password?</Link>
             </div>
@@ -169,7 +188,7 @@ const Register = () => {
           </button>
         </div>
         <p className="text-xs text-center sm:px-6 dark:text-gray-400">Already have an account?
-          <Link rel="noopener noreferrer" to="/login" className="underline dark:text-rose-600">Login</Link>
+          <Link rel="noopener noreferrer" to="/login" className="underline dark:text-rose-600 font-bold">Login</Link>
         </p>
       </div>
     </div>

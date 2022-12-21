@@ -2,9 +2,10 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import Spinner from '../Spinner/Spinner';
 
 const Login = () => {
-  const { loginUser, googleSignIn, githubSignIn } = useContext(AuthContext);
+  const { loginUser, googleSignIn, githubSignIn, loading, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
@@ -46,11 +47,13 @@ const Login = () => {
         console.log(user);
         toast.success('Login Successful');
         form.reset();
+        setLoading(false);
         navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
         toast.error(err.message);
+        setLoading(false);
       })
   }
 
@@ -60,11 +63,13 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         toast.success('Sign in with Google Successful');
+        setLoading(false);
         navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
         toast.error(err.message);
+        setLoading(false);
       })
   }
 
@@ -74,12 +79,18 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         toast.success('Sign in with Github Successful');
+        setLoading(false);
         navigate(from, { replace: true });
       })
       .catch((err) => {
         console.error(err);
         toast.error(err.message);
+        setLoading(false);
       })
+  };
+
+  if (loading) {
+    return <Spinner/>
   }
 
   return (
@@ -122,7 +133,7 @@ const Login = () => {
           </button>
         </div>
         <p className="text-xs text-center sm:px-6 dark:text-gray-400">Don't have an account?
-          <Link rel="noopener noreferrer" to="/register" className="underline dark:text-rose-600">Register</Link>
+          <Link rel="noopener noreferrer" to="/register" className="underline dark:text-rose-600 font-bold">Register</Link>
         </p>
       </div>
     </div>
