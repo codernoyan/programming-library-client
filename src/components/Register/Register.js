@@ -163,9 +163,6 @@ const Register = () => {
               <p className="text-red-500 font-medium">{error.passwordError}</p>
               <p className="text-gray-600 font-medium">Password Hint: mY4585</p>
             </>}
-            <div className="flex justify-end text-xs dark:text-gray-400">
-              <Link rel="noopener noreferrer" to="/forgotpass">Forgot Password?</Link>
-            </div>
           </div>
 
           <button className="block w-full p-3 font-semibold text-center rounded-sm text-white dark:bg-rose-400">Register</button>

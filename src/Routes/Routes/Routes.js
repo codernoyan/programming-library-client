@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Blog from "../../components/Blog/Blog";
 import Checkout from "../../components/Checkout/Checkout";
 import Faq from "../../components/Faq/Faq";
+import ForgotPassword from "../../components/ForgotPassword/ForgotPassword";
 import Home from "../../components/Home/Home";
 import Login from "../../components/Login/Login";
 import NotFound from "../../components/NotFound/NotFound";
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
       {
         path: '/blog',
         element: <Blog></Blog>
+      },
+      {
+        path: '/forgotpass',
+        element: <ForgotPassword></ForgotPassword>
       }
     ]
   }
